@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class SimpleConsumer {
+public class SimpleConsumerTwo {
     public static void main(String[] args) {
         // Step 1: Consumer configuration
         Properties props = new Properties();
