@@ -14,7 +14,7 @@ public class PartitionedProducer {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
         for (int i = 0; i < 10; i++) {
-            String key = "key_" + (i % 3); // 3 different keys
+            String key = "key_" + (i % 3); // 3 different keys - 0, 1, 2
             String value = "Message " + i + " from " + key;
 
             ProducerRecord<String, String> record =
