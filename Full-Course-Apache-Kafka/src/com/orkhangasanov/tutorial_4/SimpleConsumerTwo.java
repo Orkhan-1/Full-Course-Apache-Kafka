@@ -1,4 +1,4 @@
-package com.orkhangasanov;
+package com.orkhangasanov.tutorial_4;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class SimpleConsumer {
+public class SimpleConsumerTwo {
     public static void main(String[] args) {
         // Step 1: Consumer configuration
         Properties props = new Properties();

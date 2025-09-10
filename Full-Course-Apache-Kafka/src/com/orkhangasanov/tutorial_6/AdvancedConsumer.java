@@ -1,4 +1,4 @@
-package com.orkhangasanov;
+package com.orkhangasanov.tutorial_6;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -10,10 +10,12 @@ public class AdvancedConsumer {
     public static void main(String[] args) {
         Properties props = new Properties();
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class.getName());
+        props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class.getName());
         props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "advanced-group");
-        props.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // disable auto commit
+        props.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
@@ -40,6 +42,6 @@ public class AdvancedConsumer {
     }
 
     private static void processMessage(String message) {
-        // Imagine saving to database here
+        // Saving to database here
     }
 }

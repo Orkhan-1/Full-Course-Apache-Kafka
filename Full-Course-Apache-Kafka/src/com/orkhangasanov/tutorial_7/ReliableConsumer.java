@@ -1,4 +1,4 @@
-package com.orkhangasanov;
+package com.orkhangasanov.tutorial_7;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.*;
@@ -15,16 +15,20 @@ public class ReliableConsumer {
     public static void main(String[] args) {
         Properties consumerProps = new Properties();
         consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        consumerProps.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        consumerProps.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProps.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class.getName());
+        consumerProps.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class.getName());
         consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "reliable-group");
         consumerProps.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         consumerProps.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         Properties producerProps = new Properties();
         producerProps.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        producerProps.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        producerProps.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        producerProps.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+                StringSerializer.class.getName());
+        producerProps.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+                StringSerializer.class.getName());
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(consumerProps);
         KafkaProducer<String, String> producer = new KafkaProducer<>(producerProps);
@@ -45,7 +49,8 @@ public class ReliableConsumer {
                             processMessage(record.value());
                         } catch (Exception ex) {
                             System.err.println("Sending to DLQ: " + record.value());
-                            producer.send(new ProducerRecord<>(DLQ_TOPIC, record.key(), record.value()));
+                            producer.send(new ProducerRecord<>(DLQ_TOPIC, record.key(),
+                                    record.value()));
                         }
                     }
                 }
@@ -64,4 +69,3 @@ public class ReliableConsumer {
         // otherwise "success"
     }
 }
-

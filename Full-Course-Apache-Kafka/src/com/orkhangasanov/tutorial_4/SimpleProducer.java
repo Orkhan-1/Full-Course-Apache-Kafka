@@ -1,4 +1,4 @@
-package com.orkhangasanov;
+package com.orkhangasanov.tutorial_4;
 
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
