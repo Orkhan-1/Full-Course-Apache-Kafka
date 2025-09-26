@@ -44,10 +44,16 @@ public class AdvancedProducer {
 
         for (int i = 0; i < 10; i++) {
             String key = "id_" + i;
-            String value = "Advanced message number " + i;
+
+            String value = "";
+            if (i%2==0) {
+                value = "SUCCESS";
+            } else {
+                value = "FAIL-2";
+            }
 
             ProducerRecord<String, String> record =
-                    new ProducerRecord<>("test-topic", key, value);
+                    new ProducerRecord<>("payments", key, value);
 
             producer.send(record, (metadata, exception) -> {
                 if (exception == null) {
