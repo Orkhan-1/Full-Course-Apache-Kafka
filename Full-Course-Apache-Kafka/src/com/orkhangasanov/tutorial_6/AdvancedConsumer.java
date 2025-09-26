@@ -18,8 +18,25 @@ public class AdvancedConsumer {
         props.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
+        /*
+        Consumer settings:
+
+        1.Consumer Groups - Consumers join a group with a unique group.id.
+        Kafka ensures each partition is read by only one consumer in a group.
+
+        2.Offsets - Partitions are ordered logs; each message has an offset.
+        Offsets track a consumer's position.
+        Kafka stores offsets in the __consumer_offsets topic for recovery
+
+        3.Rebalancing - When consumers join/leave, partitions are redistributed
+        Consumers pause briefly during rebalancing
+
+        4.Auto vs Manual Commit - By default, offsets are committed automatically every 5 seconds
+*/
+
+
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singleton("partitioned-topic"));
+        consumer.subscribe(Collections.singleton("test-topic"));
 
         try {
             while (true) {
